@@ -12,13 +12,14 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     routes: [
-      {
+     {
         path: '/',
         redirect: 'start'
       },
+      
       {
         path: '/start',
-        name: 'start',
+        name: 'Start',
         component: Start
       },
       {
