@@ -6,16 +6,14 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Start',
   data: function () {
     return {
       msg: 'Page refreshed ' + new Date().toLocaleString()
     }
   }
-  
  
 }
-
 
 </script>
 

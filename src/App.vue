@@ -5,15 +5,13 @@
 
         <div>
           <b-nav tabs>
-            <b-nav-item :to="{ name: 'HelloWorld' }">HelloWorld</b-nav-item>
-            <b-nav-item :to="{ name: 'HelloWorldIM' }">HelloWorldIM</b-nav-item>
-            <b-nav-item :to="{ name: 'HelloWorldIM79' }">HelloWorldIM79</b-nav-item>
+            <b-nav-item :to="{ name: 'Start' }">Start</b-nav-item>
+            <b-nav-item :to="{ name: 'Modal' }">Modal</b-nav-item>
+            <b-nav-item :to="{ name: 'Caroussel' }">Caroussel</b-nav-item>
             <b-nav-item :to="{ name: 'IMTable' }">IMTable</b-nav-item>
           </b-nav>
         </div>
       <br>
-        
-
 
       <b-jumbotron  >        
         <router-view></router-view>

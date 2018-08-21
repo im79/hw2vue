@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: 'HelloWorldIM79',
+  name: 'Caroussel',
   props: {
     msgim: String
   },

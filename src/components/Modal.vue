@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'HelloWorldIM',
+  name: 'Modal',
   props: {
     msgim: String
   },
