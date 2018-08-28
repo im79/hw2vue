@@ -9,7 +9,8 @@ export default {
   name: 'Start',
   data: function () {
     return {
-      msg: 'Page refreshed ' + new Date().toLocaleString()
+      msg: 'Page refreshed ' + new Date().toLocaleString() +"--"+
+       process.env.NODE_ENV +"--"
     }
   }
  

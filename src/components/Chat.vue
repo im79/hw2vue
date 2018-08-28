@@ -36,7 +36,7 @@ export default {
             user: '',
             message: '',
             messages: [],
-            socket : io('http://notify.morily.de/', {
+            socket : io(process.env.VUE_APP_CHATNOTIFY_URL, {
                 transports: ['websocket']
             })
         }
