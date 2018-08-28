@@ -5,6 +5,7 @@ import Start from '@/components/Start.vue'
 import Modal from '@/components/Modal.vue'
 import Caroussel from '@/components/Caroussel.vue'
 import IMTable from '@/components/IMTable.vue'
+import Chat from '@/components/Chat.vue'
 
 
 Vue.use(Router)
@@ -36,6 +37,11 @@ export default new Router({
         path: '/IMTable',
         name: 'IMTable',
         component: IMTable
+      },
+      {
+        path: '/Chat',
+        name: 'Chat',
+        component: Chat
       }
       
   
