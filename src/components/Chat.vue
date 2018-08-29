@@ -38,7 +38,6 @@
 import io from 'socket.io-client';
 
 export default {
-    name: 'Chat',
     data() {
         return {
             errors: ["Username empty"],
