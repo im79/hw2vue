@@ -15,17 +15,15 @@
         </p>
         <form @submit.prevent="sendMessage">
             <div class="gorm-group" v-if="errors.length">
-                <label for="user">User:</label>
-                <input type="text" v-model="user" @keyup="validateUserName" class="form-control"  v-bind:class="{ 'is-invalid': errors.length}">
+                <input type="text" v-model="user" @keyup="validateUserName" class="form-control" v-bind:class="{ 'is-invalid': errors.length}" placeholder="Username">
             </div>
             <div class="gorm-group" v-if="!errors.length">
                 Username: <strong>{{user}}</strong> <button type="button" class="close float-none" @click="removeUsername" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="gorm-group pb-3">
-                  <label for="message">Message:</label>
-                  <input type="text" v-model="message" class="form-control">
+            <div class="gorm-group pb-3" v-if="uservalid">
+                  <input type="text" v-model="message" class="form-control" placeholder="Message">
               </div>
-              <button type="submit" class="btn btn-success" v-bind:class="{disabled: errors.length}">Send</button>
+              <button type="submit" class="btn btn-success"  v-if="uservalid" v-bind:class="{disabled: errors.length}">Send</button>
           </form>
       </div>
   </div>
@@ -39,6 +37,7 @@ export default {
         return {
             errors: ["Username empty"],
             user: '',
+            uservalid: false,
             message: '',
             messages: [],
             socket : io(process.env.VUE_APP_CHATNOTIFY_URL, {
@@ -49,22 +48,36 @@ export default {
     methods: {
         validateUserName(){
             this.errors = [];
-            if(this.user.length < 3)    this.errors.push('Username too short');
-            if(this.user.length == 0)    this.errors.push('empty');
-            //console.log( this.user); // eslint-disable-line no-console
+            if(this.user.length < 3){
+                this.errors.push('Username too short');
+                this.uservalid = false;
+                return;
+            }
+            if(this.user.length == 0){
+                this.errors.push('empty');
+                this.uservalid = false;
+                return;
+            }
+            this.uservalid = true;
         },
         removeUsername(){
             this.user = '';
+            this.uservalid = false;
             this.errors.push("Username empty");
         },
         sendMessage(e) {
             e.preventDefault();
+            if( this.uservalid){
+                this.socket.emit('SEND_MESSAGE', {
+                    user: this.user,
+                    message: this.message
+                });
+                this.message = ''
+            } else{
+                console.log( "Message not sent, because user not valid"); // eslint-disable-line no-console
+            }
             
-            this.socket.emit('SEND_MESSAGE', {
-                user: this.user,
-                message: this.message
-            });
-            this.message = ''
+
         }
     },
     mounted() {
