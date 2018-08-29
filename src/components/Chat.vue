@@ -12,16 +12,23 @@
           </div>
       </div>
       <div class="card-footer">
+        <p v-if="errors.length">
+            <b>Please correct the following error(s):</b>
+            <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+            </ul>
+         </p>
           <form @submit.prevent="sendMessage">
               <div class="gorm-group">
                   <label for="user">User:</label>
-                  <input type="text" v-model="user" class="form-control">
+                  <input type="text" v-model="user" @keyup="validateUserName" class="form-control" 
+                  v-bind:class="{ 'is-invalid': errors.length}">
               </div>
               <div class="gorm-group pb-3">
                   <label for="message">Message:</label>
                   <input type="text" v-model="message" class="form-control">
               </div>
-              <button type="submit" class="btn btn-success">Send</button>
+              <button type="submit" class="btn btn-success" v-bind:class="{disabled: errors.length}">Send</button>
           </form>
       </div>
   </div>
@@ -33,6 +40,7 @@ import io from 'socket.io-client';
 export default {
     data() {
         return {
+            errors: ["Username empty"],
             user: '',
             message: '',
             messages: [],
@@ -42,6 +50,12 @@ export default {
         }
     },
     methods: {
+        validateUserName(){
+            this.errors = [];
+            if(this.user.length < 3)    this.errors.push('Username too short');
+            if(this.user.length == 0)    this.errors.push('empty');
+            console.log( this.user); // eslint-disable-line no-console
+        },
         sendMessage(e) {
             e.preventDefault();
             
