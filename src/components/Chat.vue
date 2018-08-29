@@ -1,30 +1,24 @@
 <template>
   <div class="card mt-3">
-      <div class="card-body">
-          <div class="card-title">
-              <h3>IM</h3>
-              <hr>
-          </div>
-          <div class="card-body">
-              <div class="messages" v-for="(msg, index) in messages" :key="index">
-                  <p><span class="font-weight-bold">{{ msg.user }}: </span>{{ msg.message }}</p>
-              </div>
-          </div>
-      </div>
-      <div class="card-footer">
+    <h5 class="card-header">Test Chat</h5>
+    <div class="card-body">
+        <div class="messages" v-for="(msg, index) in messages" :key="index">
+            <p><span class="font-weight-bold">{{ msg.user }}: </span>{{ msg.message }}</p>
+        </div>  
+    </div>
+    <div class="card-footer">
         <p v-if="errors.length">
             <b>Please correct the following error(s):</b>
             <ul>
-            <li v-for="error in errors" :key="error">{{ error }}</li>
+                <li v-for="error in errors" :key="error">{{ error }}</li>
             </ul>
-         </p>
-          <form @submit.prevent="sendMessage">
-              <div class="gorm-group">
-                  <label for="user">User:</label>
-                  <input type="text" v-model="user" @keyup="validateUserName" class="form-control" 
-                  v-bind:class="{ 'is-invalid': errors.length}">
-              </div>
-              <div class="gorm-group pb-3">
+        </p>
+        <form @submit.prevent="sendMessage">
+            <div class="gorm-group">
+                <label for="user">User:</label>
+                <input type="text" v-model="user" @keyup="validateUserName" class="form-control"  v-bind:class="{ 'is-invalid': errors.length}">
+            </div>
+            <div class="gorm-group pb-3">
                   <label for="message">Message:</label>
                   <input type="text" v-model="message" class="form-control">
               </div>
