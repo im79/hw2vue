@@ -14,9 +14,12 @@
             </ul>
         </p>
         <form @submit.prevent="sendMessage">
-            <div class="gorm-group">
+            <div class="gorm-group" v-if="errors.length">
                 <label for="user">User:</label>
                 <input type="text" v-model="user" @keyup="validateUserName" class="form-control"  v-bind:class="{ 'is-invalid': errors.length}">
+            </div>
+            <div class="gorm-group" v-if="!errors.length">
+                Username: <strong>{{user}}</strong> <button type="button" class="close float-none" @click="removeUsername" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="gorm-group pb-3">
                   <label for="message">Message:</label>
@@ -48,7 +51,11 @@ export default {
             this.errors = [];
             if(this.user.length < 3)    this.errors.push('Username too short');
             if(this.user.length == 0)    this.errors.push('empty');
-            console.log( this.user); // eslint-disable-line no-console
+            //console.log( this.user); // eslint-disable-line no-console
+        },
+        removeUsername(){
+            this.user = '';
+            this.errors.push("Username empty");
         },
         sendMessage(e) {
             e.preventDefault();
