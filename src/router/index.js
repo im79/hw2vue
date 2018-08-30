@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Login from '@/components/Login'
 import Start from '@/components/Start.vue'
 import Modal from '@/components/Modal.vue'
 import Caroussel from '@/components/Caroussel.vue'
@@ -13,13 +14,18 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     routes: [
-     {
+    /* {
         path: '/',
         redirect: 'start'
       },
-      
+      */
+     {
+      path: '/',
+      name: 'Login',
+      component: Login
+      },
       {
-        path: '/start',
+        path: '/Start',
         name: 'Start',
         component: Start
       },

@@ -3,7 +3,7 @@
 
     <b-container>
 
-        <div>
+        <div >
           <b-nav tabs>
             <b-nav-item :to="{ name: 'Start' }">Start</b-nav-item>
             <b-nav-item :to="{ name: 'Modal' }">Modal</b-nav-item>
@@ -28,6 +28,24 @@
 
 export default {
   name: 'app',
+      data() {
+        return {
+            authenticated: false
+        }
+    },
+  updated () {
+    if (!localStorage.token && this.$route.path !== '/') {
+      this.$router.push('/?redirect=' + this.$route.path);
+      this.authenticated = false;
+    } else{
+      this.authenticated = true;
+    }
+  },
+  mounted(){
+  if (this.$route.path === '/' && localStorage.token) {
+       this.$router.push('/Start');
+    }
+  }
 }
 
 
