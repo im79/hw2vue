@@ -27,12 +27,13 @@ export default {
       console.log(this.email); // eslint-disable-line no-console
       console.log(this.password); // eslint-disable-line no-console
 
-      this.$http.post('/auth', { user: this.email, password: this.password })
+      this.$http.post('', { user: this.email, password: this.password })
         .then(request => this.loginSuccessful(request))
         .catch(() => this.loginFailed())
     },
     loginSuccessful (req) {
       if (!req.data.token) {
+
         this.loginFailed()
         return
       }
