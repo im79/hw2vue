@@ -14,7 +14,7 @@ $token = array(
     "user_id" => "1613757",
     "email" => "test@test.de",
     "admin" => false,
-    "exp" => 1535750072
+    "exp" => 1567333089
 );
 
 
