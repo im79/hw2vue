@@ -4,6 +4,7 @@ export default class User {
   static from (token) {
     try {
       let obj = JwtDecode(token)
+      console.log(obj); // eslint-disable-line no-console
       return new User(obj)
     } catch (_) {
       return null
