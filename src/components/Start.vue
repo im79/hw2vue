@@ -1,10 +1,10 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <label class="switch">
-      <input type="checkbox">
+      <input type="checkbox" v-model="checked">>
       <span class="slider"></span>
     </label>
+    <h1 v-if="checked">{{ msg }}</h1>
   </div>
 </template>
 
@@ -13,13 +13,11 @@ export default {
   name: 'Start',
   data: function () {
     return {
-      msg: 'Page refreshed ' + new Date().toLocaleString() +"--"+
-       process.env.NODE_ENV +"--"
+      msg: 'Page refreshed ' + new Date().toLocaleString() +" ENV: "+process.env.NODE_ENV,
+      checked: false
     }
   }
- 
 }
-
 </script>
 
 <style lang="scss" scoped >
@@ -37,8 +35,6 @@ h1 {
     display:none;
   }
 }
-
-
 
 .slider {
   border-radius: 34px;
