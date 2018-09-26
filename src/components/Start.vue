@@ -33,7 +33,7 @@ h1 {
   width: 60px;
   height: 34px;
 
-  .input {
+  input {
     display:none;
   }
 }
