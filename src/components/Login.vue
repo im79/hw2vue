@@ -41,17 +41,10 @@ export default {
     },
     login () {
       this.$http.post('', { user: this.email, password: this.password })
-        .then(
-          response => this.loginSuccessful(response)
-        )
-        .catch(
-          (e) => {
-            this.loginFailed(e)
-          }
-        )
+        .then(request => this.loginSuccessful(request))
+        .catch((e) => this.loginFailed(e))
     },
     loginSuccessful (req) {
-      console.log(req);
       if (!req.data.token) {
         this.loginFailed('no token provided')
         return
