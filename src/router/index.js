@@ -7,7 +7,9 @@ import Start from '@/components/Start.vue'
 import Modal from '@/components/Modal.vue'
 import Caroussel from '@/components/Caroussel.vue'
 import IMTable from '@/components/IMTable.vue'
-import Chat from '@/components/Chat.vue'
+const Chat = () => import('@/components/Chat.vue') //lazy loading
+
+// import Chat from '@/components/Chat.vue'
 
 Vue.use(Router)
 
